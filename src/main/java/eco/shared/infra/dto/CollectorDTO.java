@@ -22,6 +22,7 @@ public class CollectorDTO implements Serializable{
 	private String documento;
 	private String senha;
 	private Boolean isOng;
+	private String email;
 	private AddressDTO address;
 	private String nomeEmpresa;
 }
