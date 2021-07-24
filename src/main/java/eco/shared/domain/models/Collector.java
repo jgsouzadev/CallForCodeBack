@@ -55,7 +55,6 @@ public class Collector {
 	@Column(name = "isOng")
 	private Boolean isOng;
 	
-	@NonNull
 	@Column(name = "email", unique = true)
 	private String email;
 	
