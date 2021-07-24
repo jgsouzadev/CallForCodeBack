@@ -1,13 +1,22 @@
 package eco.shared.infra.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import eco.shared.domain.enums.TipoStatus;
+import eco.shared.domain.models.Collector;
 import eco.shared.domain.models.Donator;
+import eco.shared.domain.models.Solicitation;
 import eco.shared.infra.dto.DonatorDTO;
+import eco.shared.infra.dto.SolicitationDTO;
 import eco.shared.infra.repository.DonatorRepository;
+import eco.shared.infra.service.CollectorService;
 import eco.shared.infra.service.DonatorService;
+import eco.shared.infra.service.SolicitationService;
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -15,6 +24,8 @@ import lombok.AllArgsConstructor;
 public class DonatorServiceImpl implements DonatorService{
 	
 	DonatorRepository donatorRepository;
+	CollectorService collectorService;
+	SolicitationService solicitationService;
 	
 	@Override
 	public Donator getUserByIdAndCpf(Long id, String document) {
@@ -39,4 +50,29 @@ public class DonatorServiceImpl implements DonatorService{
 		donatorRepository.saveAndFlush(donator);
 	}
 
+	@Override
+	public void openSolicitation(SolicitationDTO requestDTO) throws Exception {
+		Donator donator = this.getDonatorById(requestDTO.getIdDonator());
+		Collector collector = collectorService.getCollectorById(requestDTO.getIdCollector());
+		
+		Solicitation solicitation = Solicitation.builder()
+				.withCollector(collector) 
+				.withDonator(donator)
+				.withDescription(requestDTO.getDescription())
+				.withEmittedAt(LocalDateTime.now())
+				.withStatus(TipoStatus.AGUARDANDO)
+				.build();
+		
+		solicitationService.save(solicitation);
+		
+	}
+
+	
+	private Donator getDonatorById(Long id) throws NotFoundException {
+		Optional<Donator> donator = donatorRepository.findById(id);
+		if(donator.isPresent())
+			return donator.get();
+		
+		throw new NotFoundException("Doador não encontrado");
+	}
 }
