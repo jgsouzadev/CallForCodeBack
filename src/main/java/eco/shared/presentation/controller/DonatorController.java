@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eco.shared.domain.models.Donator;
 import eco.shared.infra.dto.DonatorDTO;
+import eco.shared.infra.dto.SolicitationDTO;
 import eco.shared.infra.service.DonatorService;
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -24,9 +26,14 @@ public class DonatorController {
 	@Autowired
 	private DonatorService donatorService;
 	
-	@GetMapping("/{id}/cpf/{cpf}")
-	public ResponseEntity<Donator> getUserByCpfAndId(@PathVariable Long id, @PathVariable String cpf) {
-		return ResponseEntity.ok(donatorService.getUserByIdAndCpf(id, cpf));
+	@GetMapping("/cpf/{cpf}")
+	public ResponseEntity<DonatorDTO> getUserByCpfAndId(@PathVariable String cpf) throws NotFoundException {
+		return ResponseEntity.ok(donatorService.getUserByCpf(cpf));
+	}
+	
+	@GetMapping("/email/{email}")
+	public ResponseEntity<DonatorDTO> getUserByEmail(@PathVariable String email) throws NotFoundException {
+		return ResponseEntity.ok(donatorService.getUserByEmail(email));
 	}
 	
 	@PostMapping("/store")
@@ -35,8 +42,14 @@ public class DonatorController {
 	}
 	
 	@PutMapping("/{id}/cpf/{cpf}")
-	public ResponseEntity<Void> removeUserByCpfAndId(@PathVariable Long id, @PathVariable String cpf) {
-		donatorService.removeUser(id, cpf);
+	public ResponseEntity<Void> removeUserById(@PathVariable Long id, @PathVariable String cpf) throws NotFoundException {
+		donatorService.removeUser(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PostMapping("/order")
+	public ResponseEntity<Void> openSolicitation(@RequestBody SolicitationDTO solicitation) throws Exception {
+		donatorService.openSolicitation(solicitation);
 		return ResponseEntity.noContent().build();
 	}
 
