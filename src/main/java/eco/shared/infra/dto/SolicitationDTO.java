@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class SolicitationDTO implements Serializable{
 	
 	private static final long serialVersionUID = -3729527084169167329L;
+	private String protocolo;
 	private Long idCollector;
 	private Long idDonator;
 	private String description;
