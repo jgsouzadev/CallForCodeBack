@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Table(name = "TB_COLLECTOR")
@@ -53,6 +54,10 @@ public class Collector {
 
 	@Column(name = "isOng")
 	private Boolean isOng;
+	
+	@NonNull
+	@Column(name = "email", unique = true)
+	private String email;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENDERECO")

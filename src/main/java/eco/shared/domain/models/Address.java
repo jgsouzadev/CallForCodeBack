@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import eco.shared.domain.enums.EnumEstado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +37,22 @@ public class Address {
 		
 	@Column(name = "cidade")
 	private String cidade;
+	
+	@Column(name = "logradouro")
+	private String logradouro;
+	
+	@Column(name = "complemento")
+	private String complemento;
+	
+	@Column(name = "cep")
+	private String cep;
+
+	@Column(name = "numero")
+	private String numero;
+
+	@Column(name = "uf")
+	@Enumerated(EnumType.STRING)
+	private EnumEstado uf; 
 
 	@Column(name = "LATITUDE")
 	private String latitude;
