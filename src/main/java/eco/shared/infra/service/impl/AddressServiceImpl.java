@@ -1,5 +1,7 @@
 package eco.shared.infra.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import eco.shared.domain.models.Address;
@@ -27,6 +29,7 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
+	@Transactional
 	public Address saveAddress(AddressDTO address) {
 		return addressRepository.save(addressMapper.map(address));
 	}

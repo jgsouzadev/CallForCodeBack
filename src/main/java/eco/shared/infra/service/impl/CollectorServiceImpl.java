@@ -3,6 +3,8 @@ package eco.shared.infra.service.impl;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import eco.shared.domain.models.Address;
@@ -50,6 +52,7 @@ public class CollectorServiceImpl implements CollectorService{
 	}
 
 	@Override
+	@Transactional
 	public CollectorDTO createNewCollector(CollectorDTO collector) {
 		Address address = addressService.saveAddress(collector.getAddress());
 		Collector collectorMapped = this.mapDTO(collector);
