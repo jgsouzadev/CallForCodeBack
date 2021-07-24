@@ -2,8 +2,10 @@ package eco.shared.domain.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +32,8 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 		
-	@Column(name = "CITY")
-	private String city;
+	@Column(name = "cidade")
+	private String cidade;
 
 	@Column(name = "LATITUDE")
 	private String latitude;
@@ -39,8 +41,7 @@ public class Address {
 	@Column(name = "LONGITUDE")
 	private String longitude;
 
-	@JoinColumn(name = "COLLECTOR")
-	@OneToOne
-	private Collector collector;
+	@OneToOne(mappedBy = "address")
+	private Collector coletor;
 
 }

@@ -14,8 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import eco.shared.domain.annotations.NotAudit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,26 +30,37 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
+@Where(clause = "removidoAt='null'")
 public class Donator {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "CPF")
+	@Column(name = "CPF", unique = true)
 	private String cpf;
 	
-	@Column(name = "CD_PASSWORD")
-	private String password;
+	@Column(name = "SENHA")
+	private String senha;
 	
-	@Column(name = "DT_CREATED")
+	@Column(name = "NM_USUARIO")
+	private String nomeUsuario;
+	
+	@Column(name = "SOBRENOME")
+	private String sobrenome;
+	
+	@Column(name = "EMAIL", unique = true)
+	private String email;
+	
+	@Column(name = "DT_CRIADA")
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate createdAt;
+	private LocalDate criadoAt;
 
-	@Column(name = "DT_REMOVED")
+	@Column(name = "DT_REMOVIDO")
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate deletedAt;
+	private LocalDate removidoAt;
 
 	@OneToMany(mappedBy = "donator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@NotAudit
 	private Set<Solicitation> solicitations = new HashSet<>();
 }

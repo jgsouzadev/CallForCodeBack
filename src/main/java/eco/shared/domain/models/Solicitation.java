@@ -31,20 +31,20 @@ public class Solicitation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JoinColumn(name = "ID_DONATOR")
+	@JoinColumn(name = "ID_DOADOR")
 	@ManyToOne
 	private Donator donator;
 	
-	@JoinColumn(name = "ID_COLLECTOR")
+	@JoinColumn(name = "ID_COLETOR")
 	@ManyToOne
-	private Collector collector;
+	private Collector coletor;
 	
-	@Column(name = "DT_EMITTED")
+	@Column(name = "DT_EMITIDA")
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime emittedAt;
+	private LocalDateTime emitidoAt;
 	
-	@Column(name = "DESC_ORDER")
-	private String description;
+	@Column(name = "DESC_PEDIDO")
+	private String descricao;
 	
 	@Column(name ="STATUS")
 	private TipoStatus status;
