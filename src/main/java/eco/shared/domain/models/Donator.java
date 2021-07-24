@@ -33,15 +33,19 @@ public class Donator {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "CD_DOCUMENT")
-	private String document;
+	@Column(name = "CPF")
+	private String cpf;
 	
 	@Column(name = "CD_PASSWORD")
 	private String password;
 	
-	@Column(name = "DT_CADASTRO")
+	@Column(name = "DT_CREATED")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate createdAt;
+
+	@Column(name = "DT_REMOVED")
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate deletedAt;
 
 	@OneToMany(mappedBy = "donator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Solicitation> solicitations = new HashSet<>();
