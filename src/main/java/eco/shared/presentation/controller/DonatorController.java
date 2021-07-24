@@ -39,5 +39,6 @@ public class DonatorController {
 		donatorService.removeUser(id, cpf);
 		return ResponseEntity.noContent().build();
 	}
+
 	
 }

@@ -1,5 +1,5 @@
 package eco.shared.domain.enums;
 
 public enum TipoStatus {
-	CANCELADO, APROVADO, REPROVADO;
+	CANCELADO, APROVADO, REPROVADO, AGUARDANDO;
 }

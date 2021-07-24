@@ -38,6 +38,9 @@ public class Collector {
 	@Column(name = "DOCUMENT")
 	private String document;
 	
+	@Column(name = "NM_ENTERPRISE")
+	private String nameEnterprise;
+	
 	@Column(name = "PASSWORD")
 	private String password;
 	

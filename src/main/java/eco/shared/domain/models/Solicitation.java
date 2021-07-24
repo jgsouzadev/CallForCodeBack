@@ -43,6 +43,9 @@ public class Solicitation {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime emittedAt;
 	
+	@Column(name = "DESC_ORDER")
+	private String description;
+	
 	@Column(name ="STATUS")
 	private TipoStatus status;
 	
