@@ -11,7 +11,7 @@ import eco.shared.domain.models.Collector;
 @Repository
 public interface CollectorRepository extends JpaRepository<Collector, Long>{
 
-	Optional<Collector> findByDocumento(String document);	
+	Optional<Collector> findTop1ByDocumento(String document);	
 	
 	
 }

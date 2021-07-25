@@ -1,12 +1,14 @@
 package eco.shared.infra.service.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import eco.shared.domain.enums.TipoStatus;
 import eco.shared.domain.models.Address;
 import eco.shared.domain.models.Collector;
 import eco.shared.infra.dto.AddressDTO;
@@ -43,7 +45,7 @@ public class CollectorServiceImpl implements CollectorService{
 	@Override
 	@Transactional
 	public CollectorDTO getCollectorByDocument(String document) throws Exception {
-		Optional<Collector> collector = collectorRepository.findByDocumento(document);
+		Optional<Collector> collector = collectorRepository.findTop1ByDocumento(document);
 		if(collector.isPresent()) {
 			CollectorDTO collectorDTO = mapper.map(collector.get());
 			collectorDTO.setAddress(addressService.getAddressByCollectorDocument(document));
@@ -72,6 +74,13 @@ public class CollectorServiceImpl implements CollectorService{
 				.withSenha(collector.getSenha())
 				.withNomeEmpresa(collector.getNomeEmpresa())
 				.build();
+	}
+
+	@Override
+	public List<CollectorDTO> getCollectorsByRangeOfLatiLong(double latitude, double longitude, double elevacao,
+			TipoStatus status) {
+		
+		return null;
 	}
 	
 }
