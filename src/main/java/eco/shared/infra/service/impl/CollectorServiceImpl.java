@@ -71,6 +71,7 @@ public class CollectorServiceImpl implements CollectorService{
 				.withCriadoAt(LocalDate.now())
 				.withDocumento(collector.getDocumento())
 				.withIsOng(collector.getIsOng())
+				.withEmail(collector.getEmail())
 				.withSenha(collector.getSenha())
 				.withNomeEmpresa(collector.getNomeEmpresa())
 				.build();
