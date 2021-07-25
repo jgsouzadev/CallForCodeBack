@@ -30,7 +30,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
-@Where(clause = "removidoAt='null'")
 public class Donator {
 
 	@Id

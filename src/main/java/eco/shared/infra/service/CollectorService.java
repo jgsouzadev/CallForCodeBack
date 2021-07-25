@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import eco.shared.domain.enums.TipoStatus;
+import eco.shared.domain.enums.EnumEstado;
 import eco.shared.infra.dto.CollectorDTO;
 
 @Service
@@ -16,5 +16,5 @@ public interface CollectorService {
 	
 	public CollectorDTO createNewCollector(CollectorDTO collector);
 	
-	public List<CollectorDTO> getCollectorsByRangeOfLatiLong(double latitude, double longitude, double elevacao, TipoStatus status);
+	public List<CollectorDTO> getCollectorsByRangeOfLatiLong(double latitude, double longitude, EnumEstado estado);
 }
