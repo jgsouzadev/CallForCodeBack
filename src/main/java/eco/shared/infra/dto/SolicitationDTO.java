@@ -2,6 +2,7 @@ package eco.shared.infra.dto;
 
 import java.io.Serializable;
 
+import eco.shared.domain.enums.TipoStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,6 @@ public class SolicitationDTO implements Serializable{
 	private String protocolo;
 	private Long idCollector;
 	private Long idDonator;
-	private String description;
+	private String descricao;
+	private TipoStatus status;
 }

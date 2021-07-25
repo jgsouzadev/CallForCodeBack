@@ -87,7 +87,7 @@ public class DonatorServiceImpl implements DonatorService{
 		Solicitation solicitation = Solicitation.builder()
 				.withColetor(collectorMapper.map(collector)) 
 				.withDonator(donator)
-				.withDescricao(requestDTO.getDescription())
+				.withDescricao(requestDTO.getDescricao())
 				.withEmitidoAt(LocalDateTime.now())
 				.withStatus(TipoStatus.AGUARDANDO)
 				.build();
