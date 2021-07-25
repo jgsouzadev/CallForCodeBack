@@ -39,7 +39,7 @@ public class Collector {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "DOCUMENTO")
+	@Column(name = "DOCUMENTO", unique = true)
 	private String documento;
 	
 	@Column(name = "NM_EMPRESA")
