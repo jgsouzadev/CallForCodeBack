@@ -26,6 +26,7 @@ public class SolicitationServiceImpl implements SolicitationService{
 	private final SolicitationMapper mapper;
 
 	@Override
+	@Transactional
 	public Solicitation save(Solicitation solicitation) throws Exception {
 		return solicitationRepository.save(solicitation);
 	}
@@ -47,6 +48,7 @@ public class SolicitationServiceImpl implements SolicitationService{
 	}
 
 	@Override
+	@Transactional
 	public List<SolicitationDTO> buscarSolicitacaoPorEmpresa(Long collectorId) {
 		List<SolicitationDTO> listagem = solicitationRepository.getListaPorEmpresa(collectorId)
 				.stream().map(sol -> 
@@ -57,6 +59,7 @@ public class SolicitationServiceImpl implements SolicitationService{
 	}
 
 	@Override
+	@Transactional
 	public List<SolicitationDTO> buscarSolicitacaoPorPessoaFisica(Long donatorId) {
 		List<SolicitationDTO> listagem = solicitationRepository.getListaPorDoador(donatorId)
 				.stream().map(sol -> 

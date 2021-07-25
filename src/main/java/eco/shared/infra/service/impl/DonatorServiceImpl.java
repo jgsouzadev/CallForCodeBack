@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import eco.shared.domain.enums.TipoStatus;
@@ -77,6 +79,7 @@ public class DonatorServiceImpl implements DonatorService{
 	}
 
 	@Override
+	@Transactional
 	public void openSolicitation(SolicitationDTO requestDTO) throws Exception {
 		Donator donator = this.getDonatorById(requestDTO.getIdDonator());
 		CollectorDTO collector = collectorService.getCollectorById(requestDTO.getIdCollector());

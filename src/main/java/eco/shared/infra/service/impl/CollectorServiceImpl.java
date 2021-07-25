@@ -27,6 +27,7 @@ public class CollectorServiceImpl implements CollectorService{
 	AddressService addressService;
 
 	@Override
+	@Transactional
 	public CollectorDTO getCollectorById(Long id) throws NotFoundException{
 		Optional<Collector> collector = collectorRepository.findById(id);
 		if(collector.isPresent()) {
@@ -40,6 +41,7 @@ public class CollectorServiceImpl implements CollectorService{
 	}
 
 	@Override
+	@Transactional
 	public CollectorDTO getCollectorByDocument(String document) throws Exception {
 		Optional<Collector> collector = collectorRepository.findByDocumento(document);
 		if(collector.isPresent()) {
