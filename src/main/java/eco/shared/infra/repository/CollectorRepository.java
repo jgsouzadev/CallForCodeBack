@@ -11,7 +11,7 @@ import eco.shared.domain.models.Collector;
 @Repository
 public interface CollectorRepository extends JpaRepository<Collector, Long>{
 
-	@EntityGraph(value = "address", type = EntityGraph.EntityGraphType.FETCH)
-	Optional<Collector> findByDocumento(String document);
+	Optional<Collector> findByDocumento(String document);	
+	
 	
 }
