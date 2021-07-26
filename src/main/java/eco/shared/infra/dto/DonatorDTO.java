@@ -15,6 +15,7 @@ public class DonatorDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1105965765946102557L;
 
+	private Long id;
 	private String cpf;
 	private String senha;
 	private String nome;

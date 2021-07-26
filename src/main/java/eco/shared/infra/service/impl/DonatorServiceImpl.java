@@ -40,6 +40,7 @@ public class DonatorServiceImpl implements DonatorService{
 				.withSenha(donator.get().getSenha())
 				.withNome(donator.get().getNomeUsuario())
 				.withSobrenome(donator.get().getSobrenome())
+				.withId(donator.get().getId())
 				.withEmail(donator.get().getEmail())
 				.build();
 	}
