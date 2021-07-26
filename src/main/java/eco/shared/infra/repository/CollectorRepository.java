@@ -17,7 +17,7 @@ public interface CollectorRepository extends JpaRepository<Collector, Long>{
 	Optional<Collector> findTop1ByDocumento(String document);	
 	
 	@Query("SELECT new eco.shared.infra.dto.CollectorDTO(cl.address.latitude, "
-			+ " cl.address.longitude, cl.nomeEmpresa "
+			+ " cl.address.longitude, cl.nomeEmpresa, cl.documento "
 			+ ") FROM #{#entityName} cl WHERE cl.address.uf = :estado")
 	List<CollectorDTO> getCollectorsWithLongLatByEstado(EnumEstado estado);
 	

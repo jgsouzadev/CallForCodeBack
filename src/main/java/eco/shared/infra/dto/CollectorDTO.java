@@ -25,11 +25,12 @@ public class CollectorDTO implements Serializable{
 	private AddressDTO address;
 	private String nomeEmpresa;
 	
-	public CollectorDTO(String lat, String lon, String nomeEmpresa) {
+	public CollectorDTO(String lat, String lon, String nomeEmpresa, String documento) {
 		this.nomeEmpresa = nomeEmpresa;
 		this.address = AddressDTO.builder()
 				.withLatitude(lat)
 				.withLongitude(lon)
 				.build();
+		this.documento = documento;
 	}
 }
